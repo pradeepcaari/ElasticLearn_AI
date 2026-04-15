@@ -27,3 +27,4 @@ client_secret_*.json
 *.njsproj
 *.sln
 *.sw?
+docs
