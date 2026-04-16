@@ -4,7 +4,6 @@
  * Import individually — no barrel export needed.
  */
 
-import { T } from "../styles/tokens";
 import ThemeToggle from "./ThemeToggle";
 
 // ─── Spinner ──────────────────────────────────────────────────────────────────
@@ -12,8 +11,8 @@ export function Spinner({ size = 24 }) {
   return (
     <div style={{
       width: size, height: size,
-      border: `2px solid ${T.border}`,
-      borderTopColor: T.gold,
+      border: "2px solid var(--border)",
+      borderTopColor: "var(--gold)",
       borderRadius: "50%",
       animation: "spin 0.8s linear infinite",
       flexShrink: 0,
@@ -63,9 +62,9 @@ export function AgentAvatar({ mode }) {
 // ─── Brand Wordmark ───────────────────────────────────────────────────────────
 export function BrandMark({ size = "1.35rem" }) {
   return (
-    <span style={{ fontFamily:"var(--font-display)", fontSize: size, fontWeight:600, color: T.creamLt }}>
-      Elastic<span style={{ color: T.gold, fontStyle:"italic" }}>Learn</span>
-      <span style={{ color: T.textDim, fontSize:"0.55em", fontStyle:"normal", marginLeft:4, fontFamily:"var(--font-mono)", letterSpacing:"0.06em" }}>AI</span>
+    <span style={{ fontFamily:"var(--font-display)", fontSize: size, fontWeight:600, color: "var(--cream-lt)" }}>
+      Elastic<span style={{ color: "var(--gold)", fontStyle:"italic" }}>Learn</span>
+      <span style={{ color: "var(--text-dim)", fontSize:"0.55em", fontStyle:"normal", marginLeft:4, fontFamily:"var(--font-mono)", letterSpacing:"0.06em" }}>AI</span>
     </span>
   );
 }
@@ -105,7 +104,7 @@ export function GoldLine() {
   return (
     <div style={{
       position: "absolute", top: 0, left: 0, right: 0, height: 2,
-      background: `linear-gradient(90deg, transparent 0%, ${T.gold} 40%, ${T.goldLt} 60%, transparent 100%)`,
+      background: `linear-gradient(90deg, transparent 0%, var(--gold) 40%, var(--gold-lt) 60%, transparent 100%)`,
       opacity: 0.55,
     }} />
   );
@@ -116,7 +115,7 @@ export function MonoLabel({ children, color }) {
   return (
     <span style={{
       fontSize: "0.7rem",
-      color: color || T.gold,
+      color: color || "var(--gold)",
       fontFamily: "var(--font-mono)",
       letterSpacing: "0.1em",
       textTransform: "uppercase",
@@ -134,9 +133,9 @@ export function Pill({ children }) {
       borderRadius: 99,
       fontSize: "0.78rem",
       fontWeight: 400,
-      color: T.textMid,
-      border: `1px solid ${T.border}`,
-      background: "rgba(17,34,64,0.5)",
+      color: "var(--text-mid)",
+      border: "1px solid var(--border)",
+      background: "var(--surface)",
     }}>
       {children}
     </span>
@@ -145,7 +144,7 @@ export function Pill({ children }) {
 
 // ─── Icon: Question Mark ──────────────────────────────────────────────────────
 export function HelpIcon({ color, size = 16 }) {
-  const c = color || T.gold;
+  const c = color || "var(--gold)";
   return (
     <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
       <circle cx="8" cy="8" r="7" stroke={c} strokeWidth="1.2"/>
@@ -159,7 +158,7 @@ export function HelpIcon({ color, size = 16 }) {
 export function SendIcon({ color }) {
   return (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <path d="M2 8l10-5-3 5 3 5-10-5z" fill={color || T.navy}/>
+      <path d="M2 8l10-5-3 5 3 5-10-5z" fill={color || "var(--page-bg)"}/>
     </svg>
   );
 }

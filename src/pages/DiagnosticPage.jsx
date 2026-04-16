@@ -8,7 +8,6 @@
  */
 
 import { useState, useCallback } from "react";
-import { T } from "../styles/tokens";
 import { Spinner, GoldLine, MonoLabel } from "../components/Shared";
 import ThemeToggle from "../components/ThemeToggle";
 
@@ -54,12 +53,12 @@ function OptionButton({ label, text, selected, onClick }) {
     <button
       onClick={onClick}
       style={{
-        background: selected ? "rgba(201,168,76,0.1)" : "rgba(17,34,64,0.55)",
-        border: `1px solid ${selected ? T.gold : T.border}`,
+        background: selected ? "rgba(201,168,76,0.1)" : "var(--surface)",
+        border: `1px solid ${selected ? "var(--gold)" : "var(--border)"}`,
         borderRadius: "var(--radius-sm)",
         padding: "14px 18px",
         textAlign: "left",
-        color: selected ? T.goldLt : T.text,
+        color: selected ? "var(--gold-lt)" : "var(--text)",
         fontFamily: "var(--font-body)",
         fontSize: "0.92rem",
         cursor: "pointer",
@@ -73,11 +72,11 @@ function OptionButton({ label, text, selected, onClick }) {
       {/* Letter circle */}
       <span style={{
         width: 24, height: 24, flexShrink: 0,
-        border: `1.5px solid ${selected ? T.gold : T.textDim}`,
+        border: `1.5px solid ${selected ? "var(--gold)" : "var(--text-dim)"}`,
         borderRadius: "50%",
         display: "flex", alignItems: "center", justifyContent: "center",
         fontSize: "0.68rem",
-        color: selected ? T.gold : T.textDim,
+        color: selected ? "var(--gold)" : "var(--text-dim)",
         fontWeight: 500,
         background: selected ? "rgba(201,168,76,0.12)" : "transparent",
         transition: "var(--transition)",
@@ -145,7 +144,7 @@ export default function DiagnosticPage({ onComplete }) {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      padding: "24px 20px",
+      padding: "24px 20px 60px",
       background: `radial-gradient(ellipse 60% 50% at 75% 80%, var(--page-bg-subtle) 0%, transparent 60%),
                    radial-gradient(ellipse 40% 40% at 20% 20%, rgba(201,168,76,0.04) 0%, transparent 60%),
                    var(--page-bg)`,
@@ -167,13 +166,13 @@ export default function DiagnosticPage({ onComplete }) {
             fontFamily:"var(--font-display)",
             fontSize:"clamp(1.7rem, 4vw, 2.2rem)",
             fontWeight:600,
-            color:T.creamLt,
+            color:"var(--cream-lt)",
             marginTop:8,
             marginBottom:6,
           }}>
             Let's understand where you are.
           </h2>
-          <p style={{ color:T.textMid, fontSize:"0.87rem", lineHeight:1.6 }}>
+          <p style={{ color:"var(--text-mid)", fontSize:"0.87rem", lineHeight:1.6 }}>
             {total} quick questions · No wrong answers · Personalises your entire learning path
           </p>
         </div>
@@ -181,22 +180,22 @@ export default function DiagnosticPage({ onComplete }) {
         {/* ── Progress ── */}
         <div style={{ marginBottom:32 }}>
           <div style={{ display:"flex", justifyContent:"space-between", marginBottom:8 }}>
-            <span style={{ fontSize:"0.75rem", color:T.textDim }}>
+            <span style={{ fontSize:"0.75rem", color:"var(--text-dim)" }}>
               Question {current + 1} of {total}
             </span>
-            <span style={{ fontSize:"0.75rem", color:T.gold, fontFamily:"var(--font-mono)" }}>
+            <span style={{ fontSize:"0.75rem", color:"var(--gold)", fontFamily:"var(--font-mono)" }}>
               {q.topic}
             </span>
           </div>
           {/* Track */}
-          <div style={{ height:3, background:"rgba(255,255,255,0.05)", borderRadius:99, overflow:"hidden" }}>
+          <div style={{ height:3, background:"rgba(128,128,128,0.15)", borderRadius:99, overflow:"hidden" }}>
             <div style={{
               height:"100%",
               width:`${progress}%`,
-              background:`linear-gradient(90deg, ${T.gold}, ${T.goldLt})`,
+              background:`linear-gradient(90deg, var(--gold), var(--gold-lt))`,
               borderRadius:99,
               transition:"width 0.4s ease",
-              boxShadow:`0 0 10px ${T.gold}55`,
+              boxShadow:`0 0 10px rgba(201,168,76,0.4)`,
             }}/>
           </div>
           {/* Step dots */}
@@ -206,9 +205,9 @@ export default function DiagnosticPage({ onComplete }) {
                 width: i === current ? 22 : 8,
                 height:8,
                 borderRadius:99,
-                background: i < current ? T.green :
-                            i === current ? T.gold :
-                            "rgba(255,255,255,0.08)",
+                background: i < current ? "var(--green)" :
+                            i === current ? "var(--gold)" :
+                            "rgba(128,128,128,0.15)",
                 transition:"all 0.35s ease",
               }}/>
             ))}
@@ -225,7 +224,7 @@ export default function DiagnosticPage({ onComplete }) {
             fontSize:"1.12rem",
             fontWeight:400,
             lineHeight:1.65,
-            color:T.creamLt,
+            color:"var(--cream-lt)",
             marginBottom:28,
           }}>
             {q.question}
@@ -261,7 +260,7 @@ export default function DiagnosticPage({ onComplete }) {
         </button>
 
         {/* Skip hint */}
-        <p style={{ textAlign:"center", marginTop:14, fontSize:"0.75rem", color:T.textDim }}>
+        <p style={{ textAlign:"center", marginTop:14, fontSize:"0.75rem", color:"var(--text-dim)" }}>
           Select an option to continue
         </p>
       </div>

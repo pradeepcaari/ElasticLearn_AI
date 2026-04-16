@@ -3,7 +3,6 @@
  * Handles simple markdown: **bold**, `code`, indented code blocks, blank lines.
  */
 
-import { T } from "../styles/tokens";
 import { AgentAvatar } from "../components/Shared";
 
 // ─── Inline markdown renderer ─────────────────────────────────────────────────
@@ -17,9 +16,9 @@ function renderLine(line, i) {
       <div key={i} style={{
         fontFamily:"var(--font-mono)",
         fontSize:"0.8rem",
-        color:T.gold,
+        color:"var(--gold)",
         background:"rgba(201,168,76,0.06)",
-        borderLeft:`2px solid ${T.gold}`,
+        borderLeft:"2px solid var(--gold)",
         padding:"3px 10px",
         margin:"4px 0",
         borderRadius:"0 4px 4px 0",
@@ -33,7 +32,7 @@ function renderLine(line, i) {
   const boldHeading = line.match(/^\*\*(.+)\*\*$/);
   if (boldHeading) {
     return (
-      <strong key={i} style={{ color:T.creamLt, fontWeight:500, display:"block", marginTop:12, marginBottom:3 }}>
+      <strong key={i} style={{ color:"var(--cream-lt)", fontWeight:500, display:"block", marginTop:12, marginBottom:3 }}>
         {boldHeading[1]}
       </strong>
     );
@@ -45,12 +44,12 @@ function renderLine(line, i) {
     <div key={i} style={{ marginBottom: line === "" ? 10 : 0 }}>
       {parts.map((p, j) => {
         if (p.startsWith("**") && p.endsWith("**"))
-          return <strong key={j} style={{ color:T.creamLt, fontWeight:500 }}>{p.slice(2,-2)}</strong>;
+          return <strong key={j} style={{ color:"var(--cream-lt)", fontWeight:500 }}>{p.slice(2,-2)}</strong>;
         if (p.startsWith("`") && p.endsWith("`"))
           return (
             <code key={j} style={{
               fontFamily:"var(--font-mono)", fontSize:"0.82em",
-              color:T.gold, background:"rgba(201,168,76,0.09)",
+              color:"var(--gold)", background:"rgba(201,168,76,0.09)",
               padding:"1px 5px", borderRadius:4,
             }}>
               {p.slice(1,-1)}
@@ -74,7 +73,7 @@ function UserBubble({ content }) {
         padding:"12px 18px",
         fontSize:"0.92rem",
         lineHeight:1.65,
-        color:T.text,
+        color:"var(--text)",
       }}>
         {content}
       </div>
@@ -92,7 +91,7 @@ function AssistantBubble({ content, mode }) {
         padding:"16px 20px",
         fontSize:"0.9rem",
         lineHeight:1.78,
-        color:T.text,
+        color:"var(--text)",
         borderRadius:"4px 14px 14px 14px",
       }}>
         {content.split("\n").map(renderLine)}

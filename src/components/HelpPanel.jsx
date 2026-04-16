@@ -8,7 +8,6 @@
  */
 
 import { useState, useEffect } from "react";
-import { T } from "../styles/tokens";
 import { Spinner, HelpIcon } from "../components/Shared";
 
 // ─── Mock response used until backend is ready ─────────────────────────────────
@@ -33,7 +32,7 @@ Does this click? Ask me to go even more basic, or try a quick practice problem!`
 // ─── Simple markdown renderer (bold, code, blank lines) ──────────────────────
 function SimpleMarkdown({ text }) {
   return (
-    <div style={{ fontSize:"0.9rem", lineHeight:1.8, color:T.text }}>
+    <div style={{ fontSize:"0.9rem", lineHeight:1.8, color:"var(--text)" }}>
       {text.split("\n").map((line, i) => {
         if (line.startsWith("```")) return <div key={i} style={{ height:4 }} />;
         if (line.startsWith("  ") || line.startsWith("\t")) {
@@ -41,9 +40,9 @@ function SimpleMarkdown({ text }) {
             <code key={i} style={{
               display:"block",
               fontFamily:"var(--font-mono)", fontSize:"0.8rem",
-              background:"rgba(201,168,76,0.07)", color:T.gold,
+              background:"rgba(201,168,76,0.07)", color:"var(--gold)",
               padding:"8px 14px", borderRadius:6, margin:"6px 0",
-              borderLeft:`2px solid ${T.gold}`,
+              borderLeft:"2px solid var(--gold)",
             }}>
               {line.trim()}
             </code>
@@ -51,7 +50,7 @@ function SimpleMarkdown({ text }) {
         }
         if (line.startsWith("**") && line.endsWith("**")) {
           return (
-            <strong key={i} style={{ color:T.creamLt, fontSize:"0.95rem", display:"block", marginTop:14, marginBottom:4 }}>
+            <strong key={i} style={{ color:"var(--cream-lt)", fontSize:"0.95rem", display:"block", marginTop:14, marginBottom:4 }}>
               {line.slice(2,-2)}
             </strong>
           );
@@ -61,9 +60,9 @@ function SimpleMarkdown({ text }) {
           <div key={i} style={{ marginBottom: line === "" ? 10 : 2 }}>
             {parts.map((p, j) => {
               if (p.startsWith("**") && p.endsWith("**"))
-                return <strong key={j} style={{ color:T.creamLt }}>{p.slice(2,-2)}</strong>;
+                return <strong key={j} style={{ color:"var(--cream-lt)" }}>{p.slice(2,-2)}</strong>;
               if (p.startsWith("`") && p.endsWith("`"))
-                return <code key={j} style={{ fontFamily:"var(--font-mono)", fontSize:"0.82em", color:T.gold, background:"rgba(201,168,76,0.09)", padding:"1px 5px", borderRadius:4 }}>{p.slice(1,-1)}</code>;
+                return <code key={j} style={{ fontFamily:"var(--font-mono)", fontSize:"0.82em", color:"var(--gold)", background:"rgba(201,168,76,0.09)", padding:"1px 5px", borderRadius:4 }}>{p.slice(1,-1)}</code>;
               return <span key={j}>{p}</span>;
             })}
           </div>
@@ -122,17 +121,17 @@ export default function HelpPanel({ topic, mode, onClose }) {
         zIndex:201,
         display:"flex", flexDirection:"column",
         animation:"slideInLeft 0.3s cubic-bezier(0.4,0,0.2,1) both",
-        background:"rgba(9,18,34,0.97)",
+        background:"var(--surface)",
         backdropFilter:"blur(28px)",
         WebkitBackdropFilter:"blur(28px)",
-        borderLeft:`1px solid ${T.border}`,
+        borderLeft:"1px solid var(--border)",
         borderRadius:"20px 0 0 20px",
       }}>
 
         {/* Drawer header */}
         <div style={{
           padding:"20px 24px",
-          borderBottom:`1px solid ${T.border}`,
+          borderBottom:"1px solid var(--border)",
           display:"flex", alignItems:"center", gap:14,
           background:"rgba(201,168,76,0.02)",
         }}>
@@ -146,12 +145,12 @@ export default function HelpPanel({ topic, mode, onClose }) {
             <HelpIcon />
           </div>
           <div style={{ flex:1, minWidth:0 }}>
-            <div style={{ fontWeight:500, fontSize:"0.95rem", color:T.creamLt }}>
+            <div style={{ fontWeight:500, fontSize:"0.95rem", color:"var(--cream-lt)" }}>
               Help Me Understand
             </div>
             {topic && (
               <div style={{
-                fontSize:"0.73rem", color:T.textMid, marginTop:2,
+                fontSize:"0.73rem", color:"var(--text-mid)", marginTop:2,
                 whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis",
               }}>
                 Re-explaining: "{topic.slice(0,44)}{topic.length > 44 ? "…" : ""}"
@@ -161,16 +160,16 @@ export default function HelpPanel({ topic, mode, onClose }) {
           <button
             onClick={onClose}
             style={{
-              background:"rgba(255,255,255,0.05)", border:`1px solid ${T.border}`,
+              background:"var(--surface-hover)", border:"1px solid var(--border)",
               borderRadius:"50%", width:32, height:32,
-              color:T.textDim, cursor:"pointer",
+              color:"var(--text-dim)", cursor:"pointer",
               fontSize:18, lineHeight:1,
               display:"flex", alignItems:"center", justifyContent:"center",
               transition:"var(--transition)",
               flexShrink:0,
             }}
-            onMouseEnter={e => { e.currentTarget.style.background="rgba(224,82,82,0.12)"; e.currentTarget.style.color=T.red; }}
-            onMouseLeave={e => { e.currentTarget.style.background="rgba(255,255,255,0.05)"; e.currentTarget.style.color=T.textDim; }}
+            onMouseEnter={e => { e.currentTarget.style.background="rgba(224,82,82,0.12)"; e.currentTarget.style.color="var(--red)"; }}
+            onMouseLeave={e => { e.currentTarget.style.background="var(--surface-hover)"; e.currentTarget.style.color="var(--text-dim)"; }}
           >
             ×
           </button>
@@ -179,11 +178,11 @@ export default function HelpPanel({ topic, mode, onClose }) {
         {/* Mode badge strip */}
         <div style={{
           padding:"10px 24px",
-          borderBottom:`1px solid ${T.border}`,
+          borderBottom:"1px solid var(--border)",
           display:"flex", alignItems:"center", gap:8,
-          fontSize:"0.72rem", color:T.textDim,
+          fontSize:"0.72rem", color:"var(--text-dim)",
         }}>
-          <span style={{ color:T.textDim }}>Simplifying for</span>
+          <span style={{ color:"var(--text-dim)" }}>Simplifying for</span>
           <span className={`badge badge-${mode}`} style={{ fontSize:"0.65rem" }}>
             <span style={{ fontSize:7 }}>●</span>
             {mode === "foundation" ? "Foundation Mode" : "Acceleration Mode"}
@@ -195,15 +194,15 @@ export default function HelpPanel({ topic, mode, onClose }) {
           {loading ? (
             <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:18, paddingTop:48 }}>
               <Spinner size={36} />
-              <p style={{ color:T.textMid, fontSize:"0.85rem" }}>Re-interpreting this for you…</p>
+              <p style={{ color:"var(--text-mid)", fontSize:"0.85rem" }}>Re-interpreting this for you…</p>
               <div style={{
                 width:"100%", height:3, borderRadius:99,
-                background:"rgba(255,255,255,0.04)",
+                background:"var(--border)",
                 overflow:"hidden",
               }}>
                 <div style={{
                   height:"100%",
-                  background:`linear-gradient(90deg, transparent, ${T.gold}, transparent)`,
+                  background:`linear-gradient(90deg, transparent, var(--gold), transparent)`,
                   backgroundSize:"200% 100%",
                   animation:"shimmer 1.6s ease infinite",
                   backgroundPosition:"-200px 0",
@@ -218,9 +217,9 @@ export default function HelpPanel({ topic, mode, onClose }) {
         {/* Footer actions */}
         <div style={{
           padding:"16px 24px",
-          borderTop:`1px solid ${T.border}`,
+          borderTop:"1px solid var(--border)",
           display:"flex", gap:10,
-          background:"rgba(11,22,40,0.5)",
+          background:"var(--surface)",
         }}>
           <button className="btn-ghost" onClick={onClose} style={{ flex:1, fontSize:"0.82rem" }}>
             Got it, thanks

@@ -6,7 +6,6 @@
  *   onContinue — () => void  (navigate to LearningPage)
  */
 
-import { T } from "../styles/tokens";
 import { GoldLine, MonoLabel } from "../components/Shared";
 import ThemeToggle from "../components/ThemeToggle";
 
@@ -14,7 +13,7 @@ import ThemeToggle from "../components/ThemeToggle";
 const MODE_CONFIG = {
   foundation: {
     icon:   "⬡",
-    accent: T.green,
+    accent: "var(--green)",
     label:  "Foundation Mode",
     tagline: "Build from first principles",
     desc:   (gaps) =>
@@ -28,7 +27,7 @@ const MODE_CONFIG = {
   },
   acceleration: {
     icon:   "⚡",
-    accent: T.gold,
+    accent: "var(--gold)",
     label:  "Acceleration Mode",
     tagline: "Go beyond the curriculum",
     desc:   () =>
@@ -79,13 +78,13 @@ export default function ResultPage({ level, gaps, onContinue }) {
         <div style={{
           width: 80, height: 80,
           borderRadius: "50%",
-          background: `${accent}14`,
+          background: `color-mix(in srgb, ${accent} 8%, transparent)`,
           border: `2px solid ${accent}`,
           display: "flex", alignItems: "center", justifyContent: "center",
           fontSize: 30,
           margin: "0 auto 28px",
           animation: "borderGlow 3s ease infinite",
-          boxShadow: `0 0 40px ${accent}20`,
+          boxShadow: `0 0 40px color-mix(in srgb, ${accent} 12%, transparent)`,
         }}>
           {cfg.icon}
         </div>
@@ -97,7 +96,7 @@ export default function ResultPage({ level, gaps, onContinue }) {
           fontFamily: "var(--font-display)",
           fontSize: "clamp(2.2rem, 6vw, 3rem)",
           fontWeight: 600,
-          color: T.creamLt,
+          color: "var(--cream-lt)",
           margin: "12px 0 6px",
           lineHeight: 1.1,
         }}>
@@ -116,7 +115,7 @@ export default function ResultPage({ level, gaps, onContinue }) {
         </p>
 
         <p style={{
-          color: T.textMid,
+          color: "var(--text-mid)",
           lineHeight: 1.75,
           marginBottom: 32,
           fontSize: "0.95rem",
@@ -135,7 +134,7 @@ export default function ResultPage({ level, gaps, onContinue }) {
                 borderRadius: 99,
                 fontSize: "0.78rem",
                 background: "rgba(224,82,82,0.08)",
-                color: "rgba(255,130,130,0.85)",
+                color: "var(--red)",
                 border: "1px solid rgba(224,82,82,0.22)",
               }}>
                 ⚑ Gap: {g}
@@ -146,8 +145,8 @@ export default function ResultPage({ level, gaps, onContinue }) {
 
         {/* ── What to expect ── */}
         <div style={{
-          background: "rgba(17,34,64,0.5)",
-          border: `1px solid ${T.border}`,
+          background: "var(--surface)",
+          border: "1px solid var(--border)",
           borderRadius: "var(--radius)",
           padding: "24px 28px",
           marginBottom: 32,
@@ -155,7 +154,7 @@ export default function ResultPage({ level, gaps, onContinue }) {
         }}>
           <div style={{
             fontSize: "0.7rem",
-            color: T.textDim,
+            color: "var(--text-dim)",
             fontFamily: "var(--font-mono)",
             letterSpacing: "0.08em",
             textTransform: "uppercase",
@@ -167,7 +166,7 @@ export default function ResultPage({ level, gaps, onContinue }) {
             {cfg.features.map(f => (
               <div key={f} style={{ display:"flex", gap:12, alignItems:"flex-start" }}>
                 <span style={{ color: accent, fontSize:14, marginTop:1, flexShrink:0 }}>✓</span>
-                <span style={{ fontSize:"0.88rem", color: T.text, lineHeight:1.5 }}>{f}</span>
+                <span style={{ fontSize:"0.88rem", color: "var(--text)", lineHeight:1.5 }}>{f}</span>
               </div>
             ))}
           </div>
@@ -180,13 +179,12 @@ export default function ResultPage({ level, gaps, onContinue }) {
           style={{
             fontSize: "1rem",
             padding: "15px 52px",
-            boxShadow: `0 8px 32px ${accent}28`,
           }}
         >
           Start Learning →
         </button>
 
-        <p style={{ fontSize:"0.74rem", color:T.textDim, marginTop:16 }}>
+        <p style={{ fontSize:"0.74rem", color:"var(--text-dim)", marginTop:16 }}>
           You can switch modes at any time from the learning view.
         </p>
       </div>

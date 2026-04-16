@@ -4,7 +4,6 @@
  *        user      — { name, email } from auth
  */
 
-import { T } from "../styles/tokens";
 import { GoldLine, MonoLabel, Pill, BrandMark } from "../components/Shared";
 import ThemeToggle from "../components/ThemeToggle";
 
@@ -36,14 +35,14 @@ export default function LandingPage({ onStart, user }) {
         }}>
           <div style={{
             width: 32, height: 32, borderRadius: "50%",
-            background: `linear-gradient(135deg, ${T.navyLt}, ${T.gold}22)`,
-            border: `1px solid ${T.border}`,
+            background: `linear-gradient(135deg, var(--navy-lt), rgba(201,168,76,0.13))`,
+            border: "1px solid var(--border)",
             display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: "0.75rem", color: T.gold, fontWeight: 600,
+            fontSize: "0.75rem", color: "var(--gold)", fontWeight: 600,
           }}>
             {user.name?.[0]?.toUpperCase() || "U"}
           </div>
-          <span style={{ fontSize: "0.8rem", color: T.textMid }}>
+          <span style={{ fontSize: "0.8rem", color: "var(--text-mid)" }}>
             {user.name}
           </span>
         </div>
@@ -55,15 +54,15 @@ export default function LandingPage({ onStart, user }) {
         <div style={{
           display: "inline-flex", alignItems: "center", gap: 10,
           padding: "7px 20px",
-          border: `1px solid ${T.border}`,
+          border: "1px solid var(--border)",
           borderRadius: 99,
           marginBottom: 32,
           background: "rgba(201,168,76,0.05)",
           animation: "fadeUp 0.5s ease both",
         }}>
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <circle cx="6" cy="6" r="5" stroke={T.gold} strokeWidth="1.1"/>
-            <path d="M3.5 6h5M6 3.5v5" stroke={T.gold} strokeWidth="1.1" strokeLinecap="round"/>
+            <circle cx="6" cy="6" r="5" stroke="var(--gold)" strokeWidth="1.1"/>
+            <path d="M3.5 6h5M6 3.5v5" stroke="var(--gold)" strokeWidth="1.1" strokeLinecap="round"/>
           </svg>
           <MonoLabel>Agentic AI Platform · Matrix Fusion 4.0</MonoLabel>
         </div>
@@ -74,17 +73,17 @@ export default function LandingPage({ onStart, user }) {
           fontSize: "clamp(3rem, 8vw, 5.8rem)",
           fontWeight: 600,
           lineHeight: 1.03,
-          color: T.creamLt,
+          color: "var(--cream-lt)",
           letterSpacing: "-0.02em",
           marginBottom: 20,
         }}>
-          Elastic<span style={{ color: T.gold, fontStyle: "italic" }}>Learn</span> AI
+          Elastic<span style={{ color: "var(--gold)", fontStyle: "italic" }}>Learn</span> AI
         </h1>
 
         {/* Sub-headline */}
         <p style={{
           fontSize: "clamp(1rem, 2vw, 1.22rem)",
-          color: T.textMid,
+          color: "var(--text-mid)",
           maxWidth: 520,
           lineHeight: 1.7,
           margin: "0 auto 44px",
@@ -135,8 +134,8 @@ export default function LandingPage({ onStart, user }) {
           ].map((item, i) => (
             <div key={item.step} style={{
               padding: "20px 16px",
-              background: "rgba(17,34,64,0.4)",
-              border: `1px solid ${T.border}`,
+              background: "var(--surface)",
+              border: "1px solid var(--border)",
               borderRadius: "var(--radius)",
               textAlign: "left",
               animation: `fadeUp 0.7s ease both`,
@@ -146,12 +145,12 @@ export default function LandingPage({ onStart, user }) {
             }}>
               <span style={{
                 fontFamily:"var(--font-mono)", fontSize:"0.65rem",
-                color: T.gold, letterSpacing:"0.1em", opacity:0.7,
+                color: "var(--gold)", letterSpacing:"0.1em", opacity:0.7,
               }}>{item.step}</span>
-              <div style={{ fontWeight:500, color: T.creamLt, marginTop:8, marginBottom:5, fontSize:"0.9rem" }}>
+              <div style={{ fontWeight:500, color: "var(--cream-lt)", marginTop:8, marginBottom:5, fontSize:"0.9rem" }}>
                 {item.title}
               </div>
-              <div style={{ fontSize:"0.77rem", color: T.textMid, lineHeight:1.55 }}>
+              <div style={{ fontSize:"0.77rem", color: "var(--text-mid)", lineHeight:1.55 }}>
                 {item.desc}
               </div>
             </div>
@@ -168,7 +167,7 @@ export default function LandingPage({ onStart, user }) {
         {["React","Flask / FastAPI","MongoDB","RAG + FAISS","CrewAI"].map(t => (
           <span key={t} style={{
             fontSize: "0.68rem",
-            color: T.textDim,
+            color: "var(--text-dim)",
             fontFamily: "var(--font-mono)",
             letterSpacing: "0.06em",
           }}>

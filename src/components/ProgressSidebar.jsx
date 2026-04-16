@@ -6,7 +6,6 @@
  *   Response: { topics: [{name, score}], session: {count, streak, minutes} }
  */
 
-import { T } from "../styles/tokens";
 import { ModeBadge } from "../components/Shared";
 
 // ─── Mock proficiency data ────────────────────────────────────────────────────
@@ -21,14 +20,14 @@ const DEFAULT_TOPICS = [
 
 // ─── Score color helper ───────────────────────────────────────────────────────
 function scoreColor(s) {
-  if (s >= 70) return T.green;
-  if (s >= 50) return T.gold;
-  return T.red;
+  if (s >= 70) return "var(--green)";
+  if (s >= 50) return "var(--gold)";
+  return "var(--red)";
 }
 function scoreBar(s) {
-  if (s >= 70) return `linear-gradient(90deg, ${T.green}, rgba(46,204,138,0.65))`;
-  if (s >= 50) return `linear-gradient(90deg, ${T.gold}, ${T.goldLt})`;
-  return `linear-gradient(90deg, ${T.red}, rgba(224,82,82,0.65))`;
+  if (s >= 70) return `linear-gradient(90deg, var(--green), rgba(46,204,138,0.65))`;
+  if (s >= 50) return `linear-gradient(90deg, var(--gold), var(--gold-lt))`;
+  return `linear-gradient(90deg, var(--red), rgba(224,82,82,0.65))`;
 }
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -36,10 +35,10 @@ export default function ProgressSidebar({ mode, gaps, topics = DEFAULT_TOPICS })
   return (
     <div style={{
       width: 262,
-      borderLeft: `1px solid ${T.border}`,
+      borderLeft: "1px solid var(--border)",
       display: "flex",
       flexDirection: "column",
-      background: "rgba(9,18,34,0.72)",
+      background: "var(--surface)",
       backdropFilter: "blur(12px)",
       WebkitBackdropFilter: "blur(12px)",
       flexShrink: 0,
@@ -48,9 +47,9 @@ export default function ProgressSidebar({ mode, gaps, topics = DEFAULT_TOPICS })
     }}>
 
       {/* ── Header ── */}
-      <div style={{ padding:"18px 18px 14px", borderBottom:`1px solid ${T.border}` }}>
+      <div style={{ padding:"18px 18px 14px", borderBottom:"1px solid var(--border)" }}>
         <div style={{
-          fontSize:"0.68rem", color:T.gold, fontFamily:"var(--font-mono)",
+          fontSize:"0.68rem", color:"var(--gold)", fontFamily:"var(--font-mono)",
           letterSpacing:"0.09em", textTransform:"uppercase", marginBottom:8,
         }}>
           Knowledge Map
@@ -60,9 +59,9 @@ export default function ProgressSidebar({ mode, gaps, topics = DEFAULT_TOPICS })
 
       {/* ── Detected gaps ── */}
       {gaps && gaps.length > 0 && (
-        <div style={{ padding:"14px 18px", borderBottom:`1px solid ${T.border}` }}>
+        <div style={{ padding:"14px 18px", borderBottom:"1px solid var(--border)" }}>
           <div style={{
-            fontSize:"0.68rem", color:T.red, fontWeight:500,
+            fontSize:"0.68rem", color:"var(--red)", fontWeight:500,
             marginBottom:10, textTransform:"uppercase", letterSpacing:"0.06em",
             display:"flex", alignItems:"center", gap:6,
           }}>
@@ -71,10 +70,10 @@ export default function ProgressSidebar({ mode, gaps, topics = DEFAULT_TOPICS })
           <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
             {gaps.map(g => (
               <div key={g} style={{
-                fontSize:"0.78rem", color:T.textMid,
+                fontSize:"0.78rem", color:"var(--text-mid)",
                 padding:"6px 10px",
                 background:"rgba(224,82,82,0.07)",
-                borderLeft:`2px solid ${T.red}`,
+                borderLeft:"2px solid var(--red)",
                 borderRadius:"0 6px 6px 0",
                 lineHeight:1.4,
               }}>
@@ -88,7 +87,7 @@ export default function ProgressSidebar({ mode, gaps, topics = DEFAULT_TOPICS })
       {/* ── Subject proficiency ── */}
       <div style={{ padding:"16px 18px", flex:1 }}>
         <div style={{
-          fontSize:"0.68rem", color:T.textDim, fontFamily:"var(--font-mono)",
+          fontSize:"0.68rem", color:"var(--text-dim)", fontFamily:"var(--font-mono)",
           textTransform:"uppercase", letterSpacing:"0.06em", marginBottom:16,
         }}>
           Subject Proficiency
@@ -97,7 +96,7 @@ export default function ProgressSidebar({ mode, gaps, topics = DEFAULT_TOPICS })
           {topics.map(t => (
             <div key={t.name}>
               <div style={{ display:"flex", justifyContent:"space-between", marginBottom:6, alignItems:"center" }}>
-                <span style={{ fontSize:"0.8rem", color:T.text }}>{t.name}</span>
+                <span style={{ fontSize:"0.8rem", color:"var(--text)" }}>{t.name}</span>
                 <span style={{
                   fontSize:"0.72rem",
                   fontFamily:"var(--font-mono)",
@@ -108,7 +107,7 @@ export default function ProgressSidebar({ mode, gaps, topics = DEFAULT_TOPICS })
                 </span>
               </div>
               {/* Bar track */}
-              <div style={{ height:3, background:"rgba(255,255,255,0.05)", borderRadius:99, overflow:"hidden" }}>
+              <div style={{ height:3, background:"rgba(128,128,128,0.12)", borderRadius:99, overflow:"hidden" }}>
                 <div style={{
                   height:"100%",
                   width:`${t.score}%`,
@@ -125,17 +124,17 @@ export default function ProgressSidebar({ mode, gaps, topics = DEFAULT_TOPICS })
       {/* ── Legend ── */}
       <div style={{
         padding:"10px 18px",
-        borderTop:`1px solid ${T.border}`,
+        borderTop:"1px solid var(--border)",
         display:"flex", gap:14, flexWrap:"wrap",
       }}>
         {[
-          { color:T.green, label:"Strong (≥70%)" },
-          { color:T.gold,  label:"Fair (≥50%)" },
-          { color:T.red,   label:"Gap (<50%)" },
+          { color:"var(--green)", label:"Strong (≥70%)" },
+          { color:"var(--gold)",  label:"Fair (≥50%)" },
+          { color:"var(--red)",   label:"Gap (<50%)" },
         ].map(l => (
           <div key={l.label} style={{ display:"flex", alignItems:"center", gap:5 }}>
             <div style={{ width:8, height:8, borderRadius:99, background:l.color }} />
-            <span style={{ fontSize:"0.68rem", color:T.textDim }}>{l.label}</span>
+            <span style={{ fontSize:"0.68rem", color:"var(--text-dim)" }}>{l.label}</span>
           </div>
         ))}
       </div>
@@ -143,7 +142,7 @@ export default function ProgressSidebar({ mode, gaps, topics = DEFAULT_TOPICS })
       {/* ── Session stats grid ── */}
       <div style={{
         padding:"14px 18px",
-        borderTop:`1px solid ${T.border}`,
+        borderTop:"1px solid var(--border)",
         display:"grid", gridTemplateColumns:"1fr 1fr",
         gap:8,
       }}>
@@ -154,17 +153,17 @@ export default function ProgressSidebar({ mode, gaps, topics = DEFAULT_TOPICS })
           { label:"Session Time",    value:"18m" },
         ].map(s => (
           <div key={s.label} style={{
-            background:"rgba(17,34,64,0.55)",
+            background:"var(--surface-hover)",
             borderRadius:"var(--radius-sm)",
-            border:`1px solid ${T.border}`,
+            border:"1px solid var(--border)",
             padding:"10px 12px",
           }}>
-            <div style={{ fontSize:"0.65rem", color:T.textDim, marginBottom:5, lineHeight:1.3 }}>
+            <div style={{ fontSize:"0.65rem", color:"var(--text-dim)", marginBottom:5, lineHeight:1.3 }}>
               {s.label}
             </div>
             <div style={{
               fontSize:"1rem", fontWeight:500,
-              color:T.creamLt, fontFamily:"var(--font-mono)",
+              color:"var(--cream-lt)", fontFamily:"var(--font-mono)",
             }}>
               {s.value}
             </div>

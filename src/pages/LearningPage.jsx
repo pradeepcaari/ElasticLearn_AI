@@ -8,7 +8,6 @@
  */
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { T } from "../styles/tokens";
 import { TopNav, ModeBadge, TypingIndicator, AgentAvatar, HelpIcon, SendIcon } from "../components/Shared";
 import MessageBubble from "../components/MessageBubble";
 import HelpPanel from "../components/HelpPanel";
@@ -72,11 +71,11 @@ function SuggestionChip({ label, onClick }) {
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
-        background:"rgba(17,34,64,0.7)",
-        border:`1px solid ${hov ? T.gold : T.border}`,
+        background:"var(--surface)",
+        border:`1px solid ${hov ? "var(--gold)" : "var(--border)"}`,
         borderRadius:99,
         padding:"7px 16px",
-        color: hov ? T.gold : T.textMid,
+        color: hov ? "var(--gold)" : "var(--text-mid)",
         fontSize:"0.8rem",
         cursor:"pointer",
         fontFamily:"var(--font-body)",
@@ -183,9 +182,9 @@ export default function LearningPage({ mode, gaps, user, onModeChange }) {
             >
               {/* Bar chart icon */}
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <rect x="1" y="9" width="3" height="4" rx="1" fill={T.textMid}/>
-                <rect x="5.5" y="5" width="3" height="8" rx="1" fill={T.textMid}/>
-                <rect x="10" y="1" width="3" height="12" rx="1" fill={T.textMid}/>
+                <rect x="1" y="9" width="3" height="4" rx="1" fill="var(--text-mid)"/>
+                <rect x="5.5" y="5" width="3" height="8" rx="1" fill="var(--text-mid)"/>
+                <rect x="10" y="1" width="3" height="12" rx="1" fill="var(--text-mid)"/>
               </svg>
               Progress
             </button>
@@ -235,7 +234,7 @@ export default function LearningPage({ mode, gaps, user, onModeChange }) {
 
           {/* ── Input bar ── */}
           <div style={{
-            borderTop:`1px solid ${T.border}`,
+            borderTop:"1px solid var(--border)",
             padding:"14px 20px",
             display:"flex", gap:12, alignItems:"flex-end",
             background:"var(--input-bar-bg)",
@@ -249,7 +248,7 @@ export default function LearningPage({ mode, gaps, user, onModeChange }) {
               style={{
                 padding:"11px 14px", flexShrink:0,
                 borderColor:"rgba(201,168,76,0.38)",
-                color:T.gold, fontSize:"0.8rem",
+                color:"var(--gold)", fontSize:"0.8rem",
                 display:"flex", alignItems:"center", gap:6,
               }}
             >

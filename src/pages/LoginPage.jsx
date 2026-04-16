@@ -10,7 +10,6 @@
 
 import { useState, useEffect } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
-import { T } from "../styles/tokens";
 import { BrandMark, MonoLabel, Spinner } from "../components/Shared";
 import ThemeToggle from "../components/ThemeToggle";
 
@@ -100,11 +99,11 @@ function getStrength(pw) {
   if (/[0-9]/.test(pw)) s++;
   if (/[^A-Za-z0-9]/.test(pw)) s++;
   const map = [
-    { label: "Too short",  color: T.red },
-    { label: "Weak",       color: T.red },
-    { label: "Fair",       color: T.gold },
-    { label: "Good",       color: T.goldLt },
-    { label: "Strong",     color: T.green },
+    { label: "Too short",  color: "var(--red)" },
+    { label: "Weak",       color: "var(--red)" },
+    { label: "Fair",       color: "var(--gold)" },
+    { label: "Good",       color: "var(--gold-lt)" },
+    { label: "Strong",     color: "var(--green)" },
   ];
   return { score: s, ...map[s] };
 }
@@ -153,7 +152,7 @@ function LeftPanel() {
       flex: "0 0 42%",
       position: "relative",
       overflow: "hidden",
-      background: `radial-gradient(ellipse 80% 60% at 30% 40%, rgba(26,58,107,0.7) 0%, transparent 65%), ${T.navy}`,
+      background: `radial-gradient(ellipse 80% 60% at 30% 40%, rgba(26,58,107,0.7) 0%, transparent 65%), var(--navy)`,
       display: "flex", flexDirection: "column",
       padding: "48px 44px",
     }}>
@@ -163,7 +162,7 @@ function LeftPanel() {
       <div style={{
         position: "absolute", top: 0, right: 0,
         width: 2, height: "100%",
-        background: `linear-gradient(180deg, transparent 0%, ${T.gold} 35%, ${T.goldLt} 55%, transparent 100%)`,
+        background: `linear-gradient(180deg, transparent 0%, var(--gold) 35%, var(--gold-lt) 55%, transparent 100%)`,
         opacity: 0.25,
       }} />
 
@@ -187,15 +186,15 @@ function LeftPanel() {
             <div style={{
               width:36, height:36, borderRadius:10, flexShrink:0,
               background: "rgba(201,168,76,0.08)",
-              border: `1px solid ${T.border}`,
+              border: "1px solid var(--border)",
               display:"flex", alignItems:"center", justifyContent:"center",
-              fontSize:16, color: T.gold,
+              fontSize:16, color: "var(--gold)",
             }}>
               {f.icon}
             </div>
             <div>
-              <div style={{ fontSize:"0.88rem", fontWeight:500, color: T.creamLt, marginBottom:3 }}>{f.title}</div>
-              <div style={{ fontSize:"0.78rem", color: T.textMid, lineHeight:1.5 }}>{f.desc}</div>
+              <div style={{ fontSize:"0.88rem", fontWeight:500, color: "var(--cream-lt)", marginBottom:3 }}>{f.title}</div>
+              <div style={{ fontSize:"0.78rem", color: "var(--text-mid)", lineHeight:1.5 }}>{f.desc}</div>
             </div>
           </div>
         ))}
@@ -206,25 +205,25 @@ function LeftPanel() {
         position: "relative", zIndex: 1,
         padding: "24px",
         background: "rgba(11,22,40,0.5)",
-        border: `1px solid ${T.border}`,
+        border: "1px solid var(--border)",
         borderRadius: 14,
         opacity: visible ? 1 : 0,
         transition: "opacity 0.4s ease",
       }}>
-        <div style={{ fontSize:"0.1rem", color: T.gold, marginBottom:10, opacity:0.5 }}>
+        <div style={{ fontSize:"0.1rem", color: "var(--gold)", marginBottom:10, opacity:0.5 }}>
           {"— "}
         </div>
         <p className="quote-text" key={quoteIdx} style={{
           fontFamily: "var(--font-display)",
           fontSize: "1.05rem",
           fontStyle: "italic",
-          color: T.cream,
+          color: "var(--cream)",
           lineHeight: 1.6,
           marginBottom: 10,
         }}>
           "{q.text}"
         </p>
-        <span style={{ fontSize:"0.72rem", color: T.textDim, fontFamily:"var(--font-mono)", letterSpacing:"0.06em" }}>
+        <span style={{ fontSize:"0.72rem", color: "var(--text-dim)", fontFamily:"var(--font-mono)", letterSpacing:"0.06em" }}>
           — {q.author}
         </span>
         {/* Quote dots */}
@@ -234,7 +233,7 @@ function LeftPanel() {
               width: i === quoteIdx ? 18 : 5,
               height: 5,
               borderRadius: 99,
-              background: i === quoteIdx ? T.gold : T.textDim,
+              background: i === quoteIdx ? "var(--gold)" : "var(--text-dim)",
               transition: "all 0.35s ease",
             }} />
           ))}
@@ -393,13 +392,13 @@ export default function LoginPage({ onLogin }) {
               fontFamily: "var(--font-display)",
               fontSize: "clamp(1.8rem, 4vw, 2.4rem)",
               fontWeight: 600,
-              color: T.creamLt,
+              color: "var(--cream-lt)",
               lineHeight: 1.1,
               marginBottom: 10,
             }}>
               {isLogin ? "Welcome back." : "Begin your journey."}
             </h2>
-            <p style={{ fontSize:"0.88rem", color: T.textMid, lineHeight: 1.6 }}>
+            <p style={{ fontSize:"0.88rem", color: "var(--text-mid)", lineHeight: 1.6 }}>
               {isLogin
                 ? "Sign in to continue your personalized learning path."
                 : "Create your account and let AI adapt to your level."}
@@ -409,7 +408,7 @@ export default function LoginPage({ onLogin }) {
           {/* Tab switcher */}
           <div style={{
             display: "flex",
-            borderBottom: `1px solid ${T.border}`,
+            borderBottom: "1px solid var(--border)",
             marginBottom: 28,
           }}>
             <button className={`form-tab ${isLogin ? "active" : ""}`} onClick={() => { setTab("login"); setError(""); }}>
@@ -428,8 +427,8 @@ export default function LoginPage({ onLogin }) {
               <div className="login-input-wrap" style={{ animation:"fadeDown 0.3s ease both" }}>
                 <span className="login-input-icon">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <circle cx="8" cy="5.5" r="2.5" stroke={T.textDim} strokeWidth="1.2"/>
-                    <path d="M2.5 13c0-2.485 2.462-4.5 5.5-4.5s5.5 2.015 5.5 4.5" stroke={T.textDim} strokeWidth="1.2" strokeLinecap="round"/>
+                    <circle cx="8" cy="5.5" r="2.5" stroke="var(--text-dim)" strokeWidth="1.2"/>
+                    <path d="M2.5 13c0-2.485 2.462-4.5 5.5-4.5s5.5 2.015 5.5 4.5" stroke="var(--text-dim)" strokeWidth="1.2" strokeLinecap="round"/>
                   </svg>
                 </span>
                 <input
@@ -447,8 +446,8 @@ export default function LoginPage({ onLogin }) {
             <div className="login-input-wrap">
               <span className="login-input-icon">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <rect x="1.5" y="3.5" width="13" height="9" rx="2" stroke={T.textDim} strokeWidth="1.2"/>
-                  <path d="M1.5 5.5l5.646 3.764a1.5 1.5 0 001.708 0L14.5 5.5" stroke={T.textDim} strokeWidth="1.2"/>
+                  <rect x="1.5" y="3.5" width="13" height="9" rx="2" stroke="var(--text-dim)" strokeWidth="1.2"/>
+                  <path d="M1.5 5.5l5.646 3.764a1.5 1.5 0 001.708 0L14.5 5.5" stroke="var(--text-dim)" strokeWidth="1.2"/>
                 </svg>
               </span>
               <input
@@ -466,8 +465,8 @@ export default function LoginPage({ onLogin }) {
               <div className="login-input-wrap">
                 <span className="login-input-icon">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <rect x="3" y="7" width="10" height="7" rx="2" stroke={T.textDim} strokeWidth="1.2"/>
-                    <path d="M5 7V5a3 3 0 016 0v2" stroke={T.textDim} strokeWidth="1.2" strokeLinecap="round"/>
+                    <rect x="3" y="7" width="10" height="7" rx="2" stroke="var(--text-dim)" strokeWidth="1.2"/>
+                    <path d="M5 7V5a3 3 0 016 0v2" stroke="var(--text-dim)" strokeWidth="1.2" strokeLinecap="round"/>
                   </svg>
                 </span>
                 <input
@@ -484,11 +483,11 @@ export default function LoginPage({ onLogin }) {
                   onClick={() => setShowPw(p => !p)}
                   style={{
                     position:"absolute", right:14, top:"50%", transform:"translateY(-50%)",
-                    background:"none", border:"none", cursor:"pointer", color: T.textDim,
+                    background:"none", border:"none", cursor:"pointer", color: "var(--text-dim)",
                     padding:4, transition:"color 0.2s",
                   }}
-                  onMouseEnter={e => e.currentTarget.style.color = T.gold}
-                  onMouseLeave={e => e.currentTarget.style.color = T.textDim}
+                  onMouseEnter={e => e.currentTarget.style.color = "var(--gold)"}
+                  onMouseLeave={e => e.currentTarget.style.color = "var(--text-dim)"}
                 >
                   {showPw
                     ? <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8s2.5-5 6-5 6 5 6 5-2.5 5-6 5-6-5-6-5z" stroke="currentColor" strokeWidth="1.2"/><circle cx="8" cy="8" r="1.5" stroke="currentColor" strokeWidth="1.2"/><path d="M3 3l10 10" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/></svg>
@@ -504,7 +503,7 @@ export default function LoginPage({ onLogin }) {
                     {[1,2,3,4].map(i => (
                       <div key={i} className="strength-bar" style={{
                         flex:1,
-                        background: i <= strength.score ? strength.color : "rgba(255,255,255,0.06)",
+                        background: i <= strength.score ? strength.color : "rgba(128,128,128,0.1)",
                       }} />
                     ))}
                   </div>
@@ -518,11 +517,11 @@ export default function LoginPage({ onLogin }) {
               <div style={{ textAlign:"right", marginTop:-8 }}>
                 <button style={{
                   background:"none", border:"none", cursor:"pointer",
-                  fontSize:"0.78rem", color: T.textMid,
+                  fontSize:"0.78rem", color: "var(--text-mid)",
                   transition:"color 0.2s",
                 }}
-                  onMouseEnter={e => e.currentTarget.style.color = T.gold}
-                  onMouseLeave={e => e.currentTarget.style.color = T.textMid}
+                  onMouseEnter={e => e.currentTarget.style.color = "var(--gold)"}
+                  onMouseLeave={e => e.currentTarget.style.color = "var(--text-mid)"}
                 >
                   Forgot password?
                 </button>
@@ -537,7 +536,7 @@ export default function LoginPage({ onLogin }) {
                 borderRadius: "var(--radius-sm)",
                 padding: "10px 14px",
                 fontSize: "0.82rem",
-                color: T.red,
+                color: "var(--red)",
                 animation: "fadeDown 0.25s ease both",
               }}>
                 {error}
@@ -562,11 +561,11 @@ export default function LoginPage({ onLogin }) {
           {/* Divider */}
           <div style={{
             display:"flex", alignItems:"center", gap:14,
-            margin:"24px 0", color: T.textDim, fontSize:"0.75rem",
+            margin:"24px 0", color: "var(--text-dim)", fontSize:"0.75rem",
           }}>
-            <div style={{ flex:1, height:1, background: T.border }} />
+            <div style={{ flex:1, height:1, background: "var(--border)" }} />
             or continue with
-            <div style={{ flex:1, height:1, background: T.border }} />
+            <div style={{ flex:1, height:1, background: "var(--border)" }} />
           </div>
 
           {/* Social login */}
@@ -597,7 +596,7 @@ export default function LoginPage({ onLogin }) {
             </button>
             <button className="social-btn">
               {/* GitHub icon */}
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style={{ color: T.textMid }}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style={{ color: "var(--text-mid)" }}>
                 <path fillRule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
               </svg>
               GitHub
@@ -606,11 +605,11 @@ export default function LoginPage({ onLogin }) {
 
           {/* Footer terms */}
           {!isLogin && (
-            <p style={{ fontSize:"0.72rem", color: T.textDim, textAlign:"center", marginTop:20, lineHeight:1.6 }}>
+            <p style={{ fontSize:"0.72rem", color: "var(--text-dim)", textAlign:"center", marginTop:20, lineHeight:1.6 }}>
               By creating an account you agree to our{" "}
-              <span style={{ color: T.gold, cursor:"pointer" }}>Terms of Service</span>
+              <span style={{ color: "var(--gold)", cursor:"pointer" }}>Terms of Service</span>
               {" "}and{" "}
-              <span style={{ color: T.gold, cursor:"pointer" }}>Privacy Policy</span>.
+              <span style={{ color: "var(--gold)", cursor:"pointer" }}>Privacy Policy</span>.
             </p>
           )}
         </div>

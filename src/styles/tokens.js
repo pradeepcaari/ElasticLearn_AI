@@ -103,7 +103,8 @@ const GLOBAL_CSS = `
     --shadow-color:   rgba(0,0,0,0.08);
   }
 
-  html, body, #root { height: 100%; }
+  html, body { min-height: 100%; height: auto; }
+  #root { min-height: 100vh; height: auto; display: flex; flex-direction: column; }
 
   body {
     font-family: var(--font-body);
