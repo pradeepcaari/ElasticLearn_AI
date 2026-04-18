@@ -152,8 +152,11 @@ export default function DiagnosticPage({ onComplete }) {
     }}>
       <GoldLine />
 
-      {/* Theme Toggle */}
-      <div style={{ position: "fixed", top: 20, right: 20, zIndex: 200 }}>
+      {/* ── Top Navigation/Header ── */}
+      <div style={{
+        position: "absolute", top: 20, right: 20, zIndex: 200,
+        display: "flex", alignItems: "center", gap: 16,
+      }}>
         <ThemeToggle />
       </div>
 

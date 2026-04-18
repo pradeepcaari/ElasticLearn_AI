@@ -21,32 +21,32 @@ export default function LandingPage({ onStart, user }) {
     }}>
       <GoldLine />
 
-      {/* Theme Toggle — fixed top-right */}
-      <div style={{ position: "fixed", top: 20, right: 20, zIndex: 200 }}>
+      {/* ── Top Navigation/Header ── */}
+      <div style={{
+        position: "absolute", top: 20, right: 20, zIndex: 200,
+        display: "flex", alignItems: "center", gap: 16,
+      }}>
+        {user && (
+          <div style={{
+            display: "flex", alignItems: "center", gap: 10,
+            animation: "fadeDown 0.5s ease both",
+          }}>
+            <div style={{
+              width: 32, height: 32, borderRadius: "50%",
+              background: `linear-gradient(135deg, var(--navy-lt), rgba(201,168,76,0.13))`,
+              border: "1px solid var(--border)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: "0.75rem", color: "var(--gold)", fontWeight: 600,
+            }}>
+              {user.name?.[0]?.toUpperCase() || "U"}
+            </div>
+            <span style={{ fontSize: "0.8rem", color: "var(--text-mid)" }}>
+              {user.name}
+            </span>
+          </div>
+        )}
         <ThemeToggle />
       </div>
-
-      {/* Top-right user chip */}
-      {user && (
-        <div style={{
-          position: "absolute", top: 24, right: 28,
-          display: "flex", alignItems: "center", gap: 10,
-          animation: "fadeDown 0.5s ease both",
-        }}>
-          <div style={{
-            width: 32, height: 32, borderRadius: "50%",
-            background: `linear-gradient(135deg, var(--navy-lt), rgba(201,168,76,0.13))`,
-            border: "1px solid var(--border)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: "0.75rem", color: "var(--gold)", fontWeight: 600,
-          }}>
-            {user.name?.[0]?.toUpperCase() || "U"}
-          </div>
-          <span style={{ fontSize: "0.8rem", color: "var(--text-mid)" }}>
-            {user.name}
-          </span>
-        </div>
-      )}
 
       {/* ── Hero ── */}
       <div style={{ animation: "fadeUp 0.65s ease both", textAlign: "center", maxWidth: 660 }}>
@@ -158,23 +158,7 @@ export default function LandingPage({ onStart, user }) {
         </div>
       </div>
 
-      {/* Tech stack footer */}
-      <div style={{
-        position: "absolute", bottom: 28,
-        display: "flex", gap: 22, flexWrap: "wrap", justifyContent: "center",
-        animation: "fadeIn 1.4s ease both",
-      }}>
-        {["React","Flask / FastAPI","MongoDB","RAG + FAISS","CrewAI"].map(t => (
-          <span key={t} style={{
-            fontSize: "0.68rem",
-            color: "var(--text-dim)",
-            fontFamily: "var(--font-mono)",
-            letterSpacing: "0.06em",
-          }}>
-            {t}
-          </span>
-        ))}
-      </div>
+
     </div>
   );
 }
