@@ -1,0 +1,2 @@
+Status Code: 200
+Response: {"id":"chatcmpl-ed61ac08-eb4b-4677-b590-5511090634cf","choices":[{"index":0,"message":{"content":"Hello! Yes, I'm active and ready to help. What can I do for you today?","role":"assistant","reasoning_content":null},"finish_reason":"stop","logprobs":null}],"created":1782831751,"model":"z-ai/glm-5.1","service_tier":null,"system_fingerprint":null,"object":"chat.completion","usage":{"prompt_tokens":11,"completion_tokens":21,"total_tokens":32}}

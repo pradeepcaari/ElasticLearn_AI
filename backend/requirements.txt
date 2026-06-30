@@ -1,0 +1,9 @@
+flask
+flask-cors
+flask-jwt-extended
+crewai
+pymongo
+python-dotenv
+pydantic
+werkzeug
+requests
